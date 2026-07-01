@@ -474,7 +474,6 @@ select {
 
 .gallery-item:hover img {
     transform: scale(1.06);
-    filter: brightness(.72);
 }
 
 .gallery-item figcaption {
@@ -487,14 +486,8 @@ select {
     background: rgba(0, 0, 0, .72);
     color: var(--white);
     font-weight: 900;
-    opacity: 0;
     transform: translateY(8px);
     transition: .25s;
-}
-
-.gallery-item:hover figcaption {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .cta-band {
