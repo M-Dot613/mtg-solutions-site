@@ -111,22 +111,38 @@ select {
 
 .nav-menu {
     position: fixed;
-    inset: 82px 0 auto 0;
+    top: 82px;
+    left: 0;
+    right: 0;
+    z-index: 90;
     background: var(--white);
     border-bottom: 1px solid var(--line);
     display: grid;
     gap: 0;
-    transform: translateY(-120%);
-    transition: transform .25s ease;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, .08);
 
     list-style: none;
     padding-left: 0;
     margin: 0;
+
+    transform: translate3d(0, calc(-100% - 120px), 0);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        transform .25s ease,
+        opacity .2s ease,
+        visibility .2s ease;
+
+    box-shadow: none;
 }
 
 .nav-menu.is-open {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .08);
 }
 
 .nav-menu a {
@@ -624,8 +640,13 @@ select {
 .copyright {
     margin-top: 28px;
     padding-top: 22px;
-    border-top: 1px solid rgba(255, 255, 255, .12);
+    border-top: 1.5px solid rgba(255, 255, 255, .12);
     font-size: .9rem;
+}
+
+.copyright a {
+    color: rgba(255, 255, 255, 0.86);
+    font-weight: 800;
 }
 
 .reveal {
@@ -741,7 +762,7 @@ select {
 }
 
 .email-display {
-  display: inline-flex;
-  align-items: center;
-  gap: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
 }
