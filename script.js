@@ -24,6 +24,23 @@ if (navToggle && navMenu) {
     });
 }
 
+// Report taps on phone, text and email links to Google Analytics.
+document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="tel:"], a[href^="sms:"], a[href^="mailto:"]');
+
+    if (!link || typeof gtag !== "function") {
+        return;
+    }
+
+    const href = link.getAttribute("href");
+    const name = href.startsWith("tel:") ? "call_click" : href.startsWith("sms:") ? "text_click" : "email_click";
+    const area = link.closest("section[id], header, footer");
+
+    gtag("event", name, {
+        click_location: area ? area.id || area.tagName.toLowerCase() : "page"
+    });
+});
+
 const revealEls = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
