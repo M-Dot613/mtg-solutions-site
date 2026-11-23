@@ -56,30 +56,3 @@ window.addEventListener(
     },
     { passive: true }
 );
-
-document.querySelectorAll(".phone-link").forEach((link) => {
-    const parts = link.dataset.phoneParts?.split("|");
-
-    if (!parts || parts.length !== 3) return;
-
-    const phoneNumber = `+1${parts.join("")}`;
-
-    link.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.href = `tel:${phoneNumber}`;
-    });
-});
-
-document.querySelectorAll(".email-link").forEach((link) => {
-    const user = link.dataset.emailUser;
-    const domain = link.dataset.emailDomain;
-
-    if (!user || !domain) return;
-
-    const email = `${user}@${domain}`;
-
-    link.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.href = `mailto:${email}`;
-    });
-});
